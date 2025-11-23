@@ -1,7 +1,7 @@
 const LandingPage = () => {
   return (
     <div>
-      <h1>This is Landing Page</h1>
+      <h1 className="text-3xl font-bold underline">This is Landing Page</h1>
     </div>
   );
 };
