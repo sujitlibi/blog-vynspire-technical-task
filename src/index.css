@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+/* Enable class-based dark mode */
+/* Simple dark mode setup */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
