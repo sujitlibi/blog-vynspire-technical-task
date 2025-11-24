@@ -29,11 +29,11 @@ export function useDeletePost(): UseMutationResult<boolean, Error, number> {
       }
       return { previous };
     },
-    onError: (_err, _id, context) => {
-      if (context?.previous) {
-        qc.setQueryData(QUERY_KEYS.posts, context?.previous);
-      }
-    },
+    // onError: (_err, _id, context) => {
+    //   if (context?.previous) {
+    //     qc.setQueryData(QUERY_KEYS.posts, context?.previous);
+    //   }
+    // },
     onSettled: () => {
       qc.invalidateQueries({ queryKey: QUERY_KEYS.posts });
     },

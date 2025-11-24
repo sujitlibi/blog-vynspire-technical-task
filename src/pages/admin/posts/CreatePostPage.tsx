@@ -14,7 +14,7 @@ const CreatePostPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (data: { title: string; body: string }) => {
-    if (createMutation.isLoading) return;
+    // if (createMutation.isLoading) return;
     try {
       const post = await createMutation.mutateAsync({
         title: data.title,

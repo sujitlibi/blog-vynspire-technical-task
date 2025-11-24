@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 import { api } from './api';
 import type { User } from '../types/auth';
 
@@ -10,7 +12,6 @@ import type { User } from '../types/auth';
  *
  * this keeps the UI flows realistic without requiring a real auth API.
  */
-
 export async function loginRequest(
   email: string,
   password: string
