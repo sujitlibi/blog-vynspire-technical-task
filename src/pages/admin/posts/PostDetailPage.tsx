@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { usePost } from '../../../api/posts/hooks/usePost';
-import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Linkedin } from 'lucide-react';
 import PostNotFound from '../../../components/features/posts/PostNotFound';
 import Spinner from '../../../components/ui/Spinner';
 
