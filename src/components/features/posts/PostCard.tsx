@@ -4,6 +4,7 @@ import type { Post } from '../../../types/post';
 import { useDeletePost } from '../../../api/posts/hooks/useDeletePost';
 import { useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEYS } from '../../../api/react-query/queryKeys';
+import { Eye, SquarePen, Trash } from 'lucide-react';
 
 type Props = { post: Post };
 
@@ -36,28 +37,36 @@ const PostCardInner: React.FC<Props> = ({ post }) => {
   }, [qc, post]);
 
   return (
-    <div className="p-4 border rounded app-surface">
-      <h3 className="font-semibold mb-2">{post.title}</h3>
-      <p className="text-sm mb-3">{post.body.slice(0, 120)}...</p>
-      <div className="flex gap-2">
+    <div className="p-4 shadow-sm rounded bg-white dark:bg-gray-800 app-surface dark:border-gray-700 relative min-h-[180px]">
+      <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">
+        {post.title}
+      </h3>
+      <p className="text-sm mb-3 text-gray-600 dark:text-gray-300">
+        {post.body.slice(0, 120)}...
+      </p>
+
+      <div className="flex gap-2 absolute bottom-4 right-4">
         <button
           onMouseEnter={handlePrefetch}
           onClick={() => navigate(`/admin/posts/${post.id}`)}
-          className="px-2 py-1 border rounded"
+          className="px-2 py-1 text-blue-500 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded transition-colors"
+          title="View"
         >
-          View
+          <Eye />
         </button>
         <button
           onClick={() => navigate(`/admin/posts/${post.id}/edit`)}
-          className="px-2 py-1 border rounded"
+          className="px-2 py-1 text-green-500 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 rounded transition-colors"
+          title="Edit"
         >
-          Edit
+          <SquarePen />
         </button>
         <button
           onClick={handleDelete}
-          className="px-2 py-1 border rounded text-red-600"
+          className="px-2 py-1 text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors"
+          title="Delete"
         >
-          Delete
+          <Trash />
         </button>
       </div>
     </div>

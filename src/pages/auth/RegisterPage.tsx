@@ -1,18 +1,54 @@
-import { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useAuth } from '../../hooks/auth/useAuth';
 
-const RegisterPage = () => {
-  const [errors, setErrors] = useState({
-    fullname: {
-      message: '',
-    },
-    email: {
-      message: '',
-    },
-    password: {
-      message: '',
-    },
+/**
+ * Register page:
+ * - Similar to login; uses RHF + Yup.
+ * - On success navigates to dashboard.
+ */
+
+type FormValues = { name: string; email: string; password: string };
+
+const schema = yup.object({
+  name: yup.string().required('Name is required'),
+  email: yup
+    .string()
+    .email('Enter a valid email')
+    .required('Email is required'),
+  password: yup
+    .string()
+    .min(6, 'Password must be at least 6 chars')
+    .required('Password is required'),
+});
+
+const RegisterPage: React.FC = () => {
+  const { register, handleSubmit, formState } = useForm<FormValues>({
+    resolver: yupResolver(schema),
   });
+  const { errors } = formState;
+  const navigate = useNavigate();
+  const { register: registerUser } = useAuth();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/admin/dashboard');
+    }
+  }, []);
+
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      await registerUser(data.name, data.email, data.password);
+      navigate('/admin/dashboard');
+    } catch {
+      alert('Registration failed');
+    }
+  };
   return (
     <div className=" bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -28,7 +64,7 @@ const RegisterPage = () => {
           </div>
 
           {/* Email Login Form */}
-          <form className="mt-6 space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
             {/* Full Name Field */}
             <div>
               <label
@@ -38,20 +74,15 @@ const RegisterPage = () => {
                 Full Name
               </label>
               <input
-                id="fullname"
-                name="fullname"
+                id="name"
                 required
                 placeholder="E.g. Sujit Kumar Libi"
-                // value={formData.email}
-                // onChange={handleChange}
+                {...register('name')}
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm "
               />
-              {/* Just Dummy Error Message need to clean up at last */}
-              <p className="text-sm text-red-400">{'Email is required!!!!'}</p>
-              {errors.fullname.message && (
-                <p className="text-sm text-red-400">
-                  {errors.fullname.message}
-                </p>
+
+              {errors.name && (
+                <p className="text-sm text-red-400">{errors.name?.message}</p>
               )}
             </div>
             {/* Email Field */}
@@ -64,18 +95,15 @@ const RegisterPage = () => {
               </label>
               <input
                 id="email"
-                name="email"
                 type="email"
                 required
                 placeholder="E.g. sujit@demo.com"
-                // value={formData.email}
-                // onChange={handleChange}
+                {...register('email')}
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm "
               />
-              {/* Just Dummy Error Message need to clean up at last */}
-              <p className="text-sm text-red-400">{'Email is required!!!!'}</p>
-              {errors.email.message && (
-                <p className="text-sm text-red-400">{errors.email.message}</p>
+
+              {errors.email && (
+                <p className="text-sm text-red-400">{errors.email?.message}</p>
               )}
             </div>
 
@@ -89,20 +117,17 @@ const RegisterPage = () => {
               </label>
               <input
                 id="password"
-                name="password"
                 type="password"
                 required
                 placeholder="Enter your password"
-                // value={formData.password}
-                // onChange={handleChange}
+                {...register('password')}
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm "
               />
-              {/* Just Dummy Error Message need to clean up at last */}
-              <p className="text-sm text-red-400">
-                {'Password is required!!!!'}
-              </p>
-              {errors.email.message && (
-                <p className="text-sm text-red-400">{errors.email.message}</p>
+
+              {errors.password && (
+                <p className="text-sm text-red-400">
+                  {errors.password?.message}
+                </p>
               )}
             </div>
 

@@ -45,14 +45,14 @@ const PostFormInner: React.FC<Props> = ({
   return (
     <form
       onSubmit={handleSubmit(submitHandler)}
-      className="space-y-6 max-w-4xl mx-auto"
+      className="space-y-6"
       noValidate
     >
       {/* Title Field */}
       <div>
         <label
           htmlFor="title"
-          className="block text-sm font-medium text-gray-700 mb-1"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
         >
           Title *
         </label>
@@ -60,11 +60,13 @@ const PostFormInner: React.FC<Props> = ({
           {...register('title')}
           id="title"
           placeholder="Enter post title"
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50"
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
           disabled={isSubmitting}
         />
         {errors.title && (
-          <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>
+          <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+            {errors.title.message}
+          </p>
         )}
       </div>
 
@@ -72,7 +74,7 @@ const PostFormInner: React.FC<Props> = ({
       <div>
         <label
           htmlFor="body"
-          className="block text-sm font-medium text-gray-700 mb-1"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
         >
           Content *
         </label>
@@ -81,20 +83,24 @@ const PostFormInner: React.FC<Props> = ({
           id="body"
           rows={12}
           placeholder="Write your post content..."
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 resize-vertical"
+          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 resize-vertical bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
           disabled={isSubmitting}
         />
         <div className="flex justify-between mt-1">
           {errors.body ? (
-            <p className="text-sm text-red-600">{errors.body.message}</p>
+            <p className="text-sm text-red-600 dark:text-red-400">
+              {errors.body.message}
+            </p>
           ) : (
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               Minimum 10 characters required
             </p>
           )}
           <p
             className={`text-sm ${
-              characterCount < 10 ? 'text-red-600' : 'text-gray-500'
+              characterCount < 10
+                ? 'text-red-600 dark:text-red-400'
+                : 'text-gray-500 dark:text-gray-400'
             }`}
           >
             {characterCount} characters
@@ -107,7 +113,7 @@ const PostFormInner: React.FC<Props> = ({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+          className="px-6 py-2 bg-blue-600 dark:bg-blue-700 text-white font-medium rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
         >
           {isSubmitting ? (
             <span className="flex items-center">

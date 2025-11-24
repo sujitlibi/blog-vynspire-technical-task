@@ -28,7 +28,9 @@ const CreatePostPage: React.FC = () => {
 
   return (
     <div>
-      <h2 className="text-2xl mb-4">Create Post</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-2xl text-gray-900 dark:text-white">Create Posts</h2>
+      </div>
       <PostForm onSubmit={handleSubmit} />
     </div>
   );

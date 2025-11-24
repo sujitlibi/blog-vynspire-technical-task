@@ -12,13 +12,15 @@ interface PrivateRouteProps {
  * - Reads auth state from Redux and decides whether to render children.
  * - Preserves the attempted location in state so the login page can redirect back after a successful sign-in.
  */
+
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   const isAuthenticated = useSelector(
     (state: RootState) => state.authReducer.isAuthenticated
   );
+  const token = localStorage.getItem('token');
   const location = useLocation();
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !token) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
   return children;

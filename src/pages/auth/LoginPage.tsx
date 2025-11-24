@@ -1,15 +1,57 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useAuth } from '../../hooks/auth/useAuth';
+import { useEffect } from 'react';
+
+/**
+ * Login page:
+ * - Uses RHF + Yup for validation.
+ * - After successful login, redirects to the intended route (location.state.from).
+ * - Errors are surfaced to the user (alert in demo; replace with toast in real app).
+ */
+
+type FormValues = { email: string; password: string };
+
+const schema = yup.object({
+  email: yup
+    .string()
+    .email('Enter a valid email')
+    .required('Email is required'),
+  password: yup.string().required('Password is required'),
+});
 
 const LoginPage = () => {
-  const [errors, setErrors] = useState({
-    email: {
-      message: '',
-    },
-    password: {
-      message: '',
-    },
+  const { register, handleSubmit, formState } = useForm<FormValues>({
+    resolver: yupResolver(schema),
   });
+  const { errors } = formState;
+  const navigate = useNavigate();
+  const location = useLocation() as unknown as {
+    state?: { from?: { pathname?: string } };
+  };
+  const { login } = useAuth();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/admin/dashboard');
+    }
+  }, []);
+
+  const from = location.state?.from?.pathname ?? '/admin/dashboard';
+
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      await login(data.email, data.password);
+      navigate(from, { replace: true });
+    } catch {
+      alert('Login failed');
+    }
+  };
+
   return (
     <div className=" bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -25,7 +67,7 @@ const LoginPage = () => {
           </div>
 
           {/* Email Login Form */}
-          <form className="mt-6 space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
             {/* Email Field */}
             <div>
               <label
@@ -36,18 +78,15 @@ const LoginPage = () => {
               </label>
               <input
                 id="email"
-                name="email"
                 type="email"
                 required
                 placeholder="E.g. sujit@demo.com"
-                // value={formData.email}
-                // onChange={handleChange}
+                {...register('email')}
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm "
               />
-              {/* Just Dummy Error Message need to clean up at last */}
-              <p className="text-sm text-red-400">{'Email is required!!!!'}</p>
-              {errors.email.message && (
-                <p className="text-sm text-red-400">{errors.email.message}</p>
+
+              {errors.email && (
+                <p className="text-sm text-red-400">{errors.email?.message}</p>
               )}
             </div>
 
@@ -61,20 +100,17 @@ const LoginPage = () => {
               </label>
               <input
                 id="password"
-                name="password"
                 type="password"
                 required
                 placeholder="Enter your password"
-                // value={formData.password}
-                // onChange={handleChange}
+                {...register('password')}
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm "
               />
-              {/* Just Dummy Error Message need to clean up at last */}
-              <p className="text-sm text-red-400">
-                {'Password is required!!!!'}
-              </p>
-              {errors.email.message && (
-                <p className="text-sm text-red-400">{errors.email.message}</p>
+
+              {errors.password && (
+                <p className="text-sm text-red-400">
+                  {errors.password.message}
+                </p>
               )}
             </div>
 

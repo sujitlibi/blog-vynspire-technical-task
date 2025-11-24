@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
 
         <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
           <p className="text-gray-500 dark:text-gray-400 text-sm">
-            © 2024 Vynspire. All rights reserved.
+            © 2025 Vynspire. All rights reserved.
           </p>
         </div>
       </div>
