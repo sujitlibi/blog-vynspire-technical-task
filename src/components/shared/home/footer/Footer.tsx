@@ -1,4 +1,5 @@
-const footerContent = ['Login', 'Register', 'Credit', 'Home'];
+import { Link } from 'react-router-dom';
+const footerContent = ['Login', 'Register', 'Home'];
 
 const Footer: React.FC = () => {
   return (
@@ -16,13 +17,13 @@ const Footer: React.FC = () => {
 
           <div className="flex flex-wrap justify-center gap-6">
             {footerContent.map((item) => (
-              <a
+              <Link
                 key={item}
-                href={`#${item.toLowerCase()}`}
+                to={`${item.toLowerCase()}`}
                 className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-sm"
               >
                 {item}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

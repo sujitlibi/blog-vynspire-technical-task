@@ -20,7 +20,6 @@ const Navbar: React.FC = () => {
   const navItems: NavItem[] = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/' },
-    { name: 'Credit', href: '/' },
   ];
 
   return (
