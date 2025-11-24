@@ -1,7 +1,7 @@
 import React from 'react';
 // import { NavItem } from './types';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../../../contenxt/ThemeContext';
+import { useTheme } from '../../../context/ThemeContext';
 
 export interface NavItem {
   name: string;
@@ -19,11 +19,11 @@ const Navbar: React.FC = () => {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/' },
     { name: 'Credit', href: '/' },
-    { name: 'Dashboard', href: '/dashboard' },
+    { name: 'Dashboard', href: '/admin/dashboard' },
   ];
 
   return (
-    <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
+    <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                  className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   {item.name}
                 </Link>
@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
             {/* Theme Toggle */}
             <button
               onClick={themeToggle}
-              className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+              className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
               aria-label="Toggle theme"
             >
               {theme === 'light' ? (
@@ -91,13 +91,13 @@ const Navbar: React.FC = () => {
             <div className="hidden md:flex items-center space-x-2">
               <Link
                 to="/login"
-                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium "
               >
                 Log In
               </Link>
               <Link
                 to="/register"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium "
               >
                 Sign Up
               </Link>

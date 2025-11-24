@@ -1,5 +1,6 @@
 https://dribbble.com/shots/26078497-Ai-Blog-website-Hero-section
 https://dribbble.com/shots/18491011-Login-page-Invooce
+https://www.behance.net/gallery/236104403/AI-Content-Writing-Brainwind-Audio-Brand-voice?tracking_source=search_projects|blog+website&l=0
 
 # React + TypeScript + Vite
 

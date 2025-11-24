@@ -1,31 +1,8 @@
-// import { Link } from 'react-router-dom';
-
 import { Link } from 'react-router-dom';
-
-// const LandingPage: React.FC = () => {
-//   return (
-//     <div className="text-center py-20">
-//       <h1 className="text-4xl font-bold mb-4">Vynspire Technical Blog</h1>
-//       <p className="mb-6">
-//         A technical task to create simple blog platform implemented with React
-//       </p>
-//       <div className="flex justify-center gap-4">
-//         <Link to="/login" className="px-4 py-2 bg-blue-600 text-white rounded">
-//           Login
-//         </Link>
-//         <Link to="/register" className="px-4 py-2 border rounded">
-//           Register
-//         </Link>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default LandingPage;
 
 const LandingPage: React.FC = () => {
   return (
-    <div className="bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div className="bg-white dark:bg-gray-900 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Trusted by section */}
         <div className="text-center mb-12">
@@ -51,13 +28,13 @@ const LandingPage: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
             <Link
               to="/login"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors duration-200 transform hover:scale-105"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold  transform hover:scale-105"
             >
               Start Writing! Free
             </Link>
             <Link
               to="/register"
-              className="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 px-8 py-4 rounded-lg text-lg font-semibold transition-colors duration-200"
+              className="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 px-8 py-4 rounded-lg text-lg font-semibold "
             >
               See How it Works
             </Link>
