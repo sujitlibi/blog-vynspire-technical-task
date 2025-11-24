@@ -15,50 +15,48 @@ optimization, and strong TypeScript usage.
 
 ### **1. Vite**
 
-- Lightning-fast development server\
-- Faster HMR and builds\
+- Lightning-fast development server
+- Faster HMR and builds
 - Perfect for modern React dev workflows
 
 ### **2. React + TypeScript**
 
-- Strong type safety\
-- More predictable maintainability\
-- 0 usage of `any`
+- Strong type safety
+- More predictable maintainability
 
-### **3. Redux Toolkit + Redux Thunk (Hybrid Architecture)**
+### **3. Redux Toolkit **
 
-- Used exclusively for **authentication**\
-- Clean, predictable global state\
-- Modern Redux with minimal boilerplate\
-- Thunk supports async login/register flows
+- Used exclusively for **authentication**
+- Clean, predictable global state
+- Modern Redux with minimal boilerplate
 
 ### **4. React Query**
 
-- Best choice for server-state\
-- Caching, refetching, pagination support\
+- Best choice for server-state
+- Caching, refetching, pagination support
 - Used for **Posts CRUD and listing**
 
 ### **5. React Hook Form + Yup**
 
-- High-performance form handling\
-- Excellent validation structure\
+- High-performance form handling
+- Excellent validation structure
 - Fewer component re-renders compared to Formik
 
 ### **6. Tailwind CSS**
 
-- Utility‑first styling\
-- Makes UI responsive quickly\
+- Utility‑first styling
+- Makes UI responsive quickly
 - Consistent design system
 
 ### **7. Context API (Dark/Light Mode)**
 
-- Lightweight\
-- No global render bloat\
+- Lightweight
+- No global render bloat
 - Clean UI state separation
 
 ### **8. React Router v6 + Lazy Loading**
 
-- Clean component routing\
+- Clean component routing
 - Code splitting for performance
 
 ---
