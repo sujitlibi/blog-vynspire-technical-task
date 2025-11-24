@@ -29,7 +29,10 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="shrink-0">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h1
+              onClick={() => navigate('')}
+              className="text-2xl font-bold text-gray-900 dark:text-white cursor-pointer"
+            >
               Vynspire AI Blog
             </h1>
           </div>

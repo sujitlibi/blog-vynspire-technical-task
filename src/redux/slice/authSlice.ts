@@ -1,6 +1,15 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { type User } from '../../types/auth';
 
+/**
+ * Redux slice for authentication.
+ *
+ * Business logic:
+ * - Auth is stored in Redux so components (Navbar, PrivateRoute) can read it synchronously.
+ * - I store token & user in localStorage via useAuth hook (persistence).
+ * - Slice reducers are intentionally simple to keep state transitions predictable and testable.
+ */
+
 interface AuthState {
   user: User | null;
   token: string | null;

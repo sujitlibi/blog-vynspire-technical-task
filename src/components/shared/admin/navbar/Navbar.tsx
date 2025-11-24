@@ -1,4 +1,5 @@
 import { ListCollapse, LogOut, Sun, Moon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../../../../context/ThemeContext';
 
 type NavbarProps = {
@@ -8,6 +9,7 @@ type NavbarProps = {
 
 const Navbar = ({ toggleSidebar, handleLogout }: NavbarProps) => {
   const { theme, themeToggle } = useTheme();
+  const navigate = useNavigate();
   return (
     <nav className="bg-white dark:bg-gray-800 shadow-sm  dark:border-gray-700 fixed w-full top-0 z-50">
       <div className="px-4 sm:px-6 lg:px-8">
@@ -22,7 +24,10 @@ const Navbar = ({ toggleSidebar, handleLogout }: NavbarProps) => {
               <ListCollapse />
             </button>
             <div className="shrink-0 flex items-center ml-4 lg:ml-0">
-              <h1 className="text-xl font-bold text-gray-900 dark:text-white">
+              <h1
+                onClick={() => navigate('')}
+                className="text-xl font-bold text-gray-900 dark:text-white cursor-pointer"
+              >
                 Admin Panel
               </h1>
             </div>

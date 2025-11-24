@@ -1,6 +1,16 @@
 import { api } from './api';
 import type { User } from '../types/auth';
 
+/**
+ * Authentication service simulation only for demo purpose
+ *
+ * - loginRequest and registerRequest mimic calling a backend for authentication.
+ * - They return a user object and an access token string.
+ * - Side-effects: store token in localStorage for session persistence.
+ *
+ * this keeps the UI flows realistic without requiring a real auth API.
+ */
+
 export async function loginRequest(
   email: string,
   password: string

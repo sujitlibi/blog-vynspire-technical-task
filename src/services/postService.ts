@@ -1,6 +1,18 @@
 import { api } from './api';
 import type { Post } from '../types/post';
 
+/**
+ * Post service: typed wrappers for CRUD operations.
+ * - I map jsonplaceholder responses to Post type.
+ * - create/update/delete are simulated—jsonplaceholder will not persist changes permanently,
+ *   but it returns suitable responses for the UI.
+ */
+
+/**
+ * Fetch posts from the API and return a trimmed list for the demo.
+ * I slice to 100 items at most to keep client pagination performant in the demo.
+ */
+
 export async function fetchPosts(): Promise<Post[]> {
   const response = await api.get<Post[]>('/posts');
   return response.data.slice(0, 100).map((post) => ({

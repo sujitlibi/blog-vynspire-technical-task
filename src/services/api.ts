@@ -1,5 +1,14 @@
 import axios, { type AxiosInstance } from 'axios';
 
+/**
+ * api: central Axios instance.
+ *
+ * Business logic:
+ * - Attaches token (if present) to each request so backend can authenticate.
+ * - Handles global 401: clears auth and logs out user to avoid inconsistent state.
+ *
+ */
+
 export const api: AxiosInstance = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com',
   timeout: 10000,
